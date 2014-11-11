@@ -377,6 +377,14 @@ let g:gitgutter_sign_modified_removed = '∙'
 let g:SuperTabLongestEnhanced=1
 let g:SuperTabLongestHighlight=1
 
+" octopress.vim
+let g:octopress_path = "$HOME/git/blog"
+map <Leader>on  :OctopressNew<CR>
+map <Leader>ol  :OctopressList<CR>
+map <Leader>og  :OctopressGrep<CR>
+nmap ,og  :OctopressGenerate<CR>
+nmap ,od  :OctopressDeploy<CR>
+
 " enable filetype plugins -- e.g., ftplugin/xml.vim
 filetype plugin indent on
 
