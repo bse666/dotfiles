@@ -1,0 +1,17 @@
+#!/bin/sh
+
+H=$(date +%H)
+
+
+if [ $H -gt 7 -a $H -lt 20 ]; then
+    echo tach;
+    echo if VARIABLE DARK;
+    echo pkill rxvt;
+    echo rxvt -e tmux a
+else
+    echo nacht
+fi
+
+#if (( ${H} > 8 )) && (( ${H} < 13 )); then
+#    echo vormittag;
+#fi
