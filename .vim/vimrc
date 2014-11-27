@@ -315,6 +315,13 @@ sys.path.append(os.path.join(os.getenv('HOME'), '.vim', 'python'))
 EOF
 endif
 
+" Section: AutoCMD {{{1
+"--------------------------------------------------------------------------
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 " Section: Plugin settings {{{1
 "--------------------------------------------------------------------------
 
