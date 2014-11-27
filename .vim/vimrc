@@ -400,12 +400,17 @@ function! ColorTermZenburn()
   let g:zenburn_high_Contrast = 1
 endfunction
 
+function! ColorTermSol()
+  colorscheme solarized
+  set background=dark
+endfunction
+
 " Make sure colored syntax mode is on, and make it Just Work with newer 256
 " color terminals like iTerm2.
 if !has('gui_running')
   if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal" || $TERM == "rxvt-unicode-256color"
     set t_Co=256
-    call ColorTermZenburn()
+    call ColorTermSol()
   elseif has("terminfo")
     colorscheme default
     set t_Co=8
