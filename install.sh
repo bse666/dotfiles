@@ -99,7 +99,7 @@ fi
 note "Installing dotfiles..."
 for path in .* ; do
     case $path in
-        .|..|.git|.config)
+        .|..|.git|.gitignore|.config)
             continue
             ;;
         *)
@@ -107,16 +107,18 @@ for path in .* ; do
             ;;
     esac
 done
-#for path in .config/.* ; do
-#    case $path in
-#        .|..)
-#            continue
-#            ;;
-#        *)
-#            link $basedir/$path $HOME/.config/$path
-#            ;;
-#    esac
-#done
+
+note "Installing .config dotfiles..."
+for path in .config/* ; do
+    case $path in
+        .|..)
+            continue
+            ;;
+        *)
+            link $basedir/.config/$path $HOME/.config/$path
+            ;;
+    esac
+done
 
 note "Installing bin/ directory..."
 mkdir -v -p $bindir
