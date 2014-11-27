@@ -115,7 +115,7 @@ for path in .config/* ; do
             continue
             ;;
         *)
-            link $basedir/.config/$path $HOME/.config/$path
+            link $basedir/$path $HOME/$path
             ;;
     esac
 done
