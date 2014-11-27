@@ -1,0 +1,2 @@
+#!/bin/sh
+net rpc shutdown -r -I $1 -U $2
