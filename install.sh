@@ -148,8 +148,8 @@ if has vim; then
 fi
 
 note "Initializing oh-my-zsh..."
-if [ -e $basedir/oh-my-zsh ]; then
-  break;
+if [ -e $basedir/oh-my-zsh/.git/config ]; then
+  echo "Repository exist..."
 else
   git clone $ohmyzsh $basedir/oh-my-zsh
 fi
