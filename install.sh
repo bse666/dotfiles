@@ -15,6 +15,7 @@ basedir=$HOME/.dotfiles
 bindir=$HOME/bin
 gitbase=git://github.com/bse666/dotfiles.git
 tarball=http://github.com/bse666/dotfiles/tarball/master
+ohmyzsh=https://github.com/robbyrussell/oh-my-zsh
 
 function has() {
     return $( which $1 >/dev/null )
@@ -99,7 +100,7 @@ fi
 note "Installing dotfiles..."
 for path in .* ; do
     case $path in
-        .|..|.git|.gitignore|.config)
+        .|..|.git|.gitignore|.config|oh-my-zsh)
             continue
             ;;
         *)
@@ -139,6 +140,11 @@ note "Initializing tools..."
 if has git; then
     # Post-install scripts might customize this further.
     cp -v $basedir/.gitconfig.base $HOME/.gitconfig
+    if [ -e $basedir/oh-my-zsh ]; then
+      continue;
+    else
+      git clone $ohmyzsh $basedir/oh-my-zsh
+    fi
 fi
 if has vim; then
   cd $basedir
