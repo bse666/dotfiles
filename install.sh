@@ -149,7 +149,7 @@ fi
 
 note "Initializing oh-my-zsh..."
 if [ -e $basedir/oh-my-zsh ]; then
-  continue;
+  break;
 else
   git clone $ohmyzsh $basedir/oh-my-zsh
 fi
