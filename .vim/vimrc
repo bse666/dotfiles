@@ -54,6 +54,9 @@ nmap <M-o> <C-w><C-w>
 " Emacs-like bindings in insert mode
 imap <C-e> <C-o>$
 
+" Paste Mode for pasting more Text at once (use in insert mode)
+set pastetoggle=<F2>
+
 " Emacs-like bindings in command line -- `:help emacs-keys`
 cnoremap <C-a>  <Home>
 cnoremap <C-b>  <Left>
