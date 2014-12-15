@@ -418,8 +418,9 @@ function! ColorTermZenburn()
 endfunction
 
 function! ColorTermSol()
-  colorscheme solarized
   set background=dark
+  colorscheme solarized
+  call togglebg#map("<F5>")               " toggle Background light|dark
 endfunction
 
 " Make sure colored syntax mode is on, and make it Just Work with newer 256
