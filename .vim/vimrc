@@ -439,7 +439,7 @@ call togglebg#map("<F5>")               " toggle Background light|dark
 if !has('gui_running')
   if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal" || $TERM == "rxvt-unicode-256color"
     set t_Co=256
-    " call ColorTermSol()
+    call ColorTermSol()
   elseif has("terminfo")
     colorscheme default
     set t_Co=8
