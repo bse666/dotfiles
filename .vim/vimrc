@@ -54,6 +54,9 @@ nmap <M-o> <C-w><C-w>
 " Emacs-like bindings in insert mode
 imap <C-e> <C-o>$
 
+" Paste Mode for pasting more Text at once (use in insert mode)
+set pastetoggle=<F2>
+
 " Emacs-like bindings in command line -- `:help emacs-keys`
 cnoremap <C-a>  <Home>
 cnoremap <C-b>  <Left>
@@ -171,6 +174,10 @@ map Q <silent>
 map q: <silent>
 map K <silent>
 "map q <silent>
+"
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Make the cursor stay on the same line when window switching {{{2
 
@@ -417,17 +424,22 @@ function! ColorTermZenburn()
   let g:zenburn_high_Contrast = 1
 endfunction
 
-function! ColorTermSol()
-  colorscheme solarized
-  set background=dark
-endfunction
+"function! ColorTermSol()
+"  set background=dark
+"  colorscheme solarized
+"  call togglebg#map("<F5>")               " toggle Background light|dark
+"endfunction
+"
+set background=dark
+colorscheme solarized
+call togglebg#map("<F5>")               " toggle Background light|dark
 
 " Make sure colored syntax mode is on, and make it Just Work with newer 256
 " color terminals like iTerm2.
 if !has('gui_running')
   if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal" || $TERM == "rxvt-unicode-256color"
     set t_Co=256
-    call ColorTermSol()
+    " call ColorTermSol()
   elseif has("terminfo")
     colorscheme default
     set t_Co=8

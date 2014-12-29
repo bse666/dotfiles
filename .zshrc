@@ -57,10 +57,10 @@ up() { local x='';for i in $(seq ${1:-1});do x="$x../"; done;cd $x; }
 
 #-------- Listing Files {{{
 #------------------------------------------------------
-alias lsd='ls -1d */'        # ls folders only
-alias l='ls -l'
-alias lst='ls -Ggthrc'        # list by time and change, newest at bottom
-alias lsa='ls -GghA'
+alias 'lsd=ls -1d */'        # ls folders only
+alias 'l=ls -l'
+alias 'lst=ls -Ggthrc'        # list by time and change, newest at bottom
+alias 'lsa=ls -GghA'
 # list and grep
 lsg() {
         keyword=$(echo "$@" |  sed 's/ /.*/g')
