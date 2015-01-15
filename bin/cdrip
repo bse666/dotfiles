@@ -1,1 +1,1 @@
-ripit -c 2 -o .
+ripit -e -c 2 -o .

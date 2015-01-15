@@ -22,6 +22,7 @@ alias npb="npm install & bower install"
 PATH=~/bin:$PATH
 EDITOR=vim
 
+
 # # Customize to your needs...
 # alias for setting solarized dark/light
 alias 'sold=xrdb -DSOLARIZED_DARK -merge $HOME/.Xresources'
@@ -35,6 +36,7 @@ alias 'ttop=top -ocpu -R -F -s 2 -n30'
 alias lh='ls -a | egrep "^\."'
 
 # geeky stuff
+#alias 'mp3fromavi=ffmpeg -i $1 -ac 2 -ar 44100 -vn $1.mp3'
 alias 'mp3fromavi=ffmpeg -i $1 -ab 160k -ac 2 -ar 44100 -vn $1.mp3'
 alias 'ytdl=youtube-dl -i -k --extract-audio --audio-format mp3 $*'
 alias -s wav='play -q'
@@ -42,6 +44,7 @@ alias -s wav='play -q'
 # sort files in current directory by the number of words they contain
 alias 'wordy=wc -w * | sort | tail -n10'
 alias 'filecount=ls -aRF | wc -l'
+alias 'lsmod=find . -mtime -1 -ls'
 
 # file related
 

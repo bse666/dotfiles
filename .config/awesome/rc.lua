@@ -380,6 +380,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][2] } },
     { rule = { instance = "plugin-container" },
       properties = { floating = true } },
+    { rule = { class = "Wine" }, properties = { border_width = 0, floating = true } },
     --  flash? { rule = { class = "Exe"}, properties = {floating = true}
 }
 -- }}}
