@@ -72,6 +72,7 @@ repos=(
   https://github.com/vim-scripts/oceandeep.git
   https://github.com/wavded/vim-stylus.git
   https://github.com/jnurmine/Zenburn
+  https://github.com/itchyny/calendar.vim
 
   )
 
