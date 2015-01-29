@@ -1,0 +1,1 @@
+rsync -amv --delete --ignore-errors --exclude-from=$HOME/Documents/excludes.txt $HOME/ freenas::laptop
