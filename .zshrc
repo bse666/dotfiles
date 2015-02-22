@@ -18,6 +18,7 @@ alias lag="sudo tc qdisc add dev lo root netem delay"
 alias nolag="sudo tc qdisc delete dev lo root"
 alias chromium="chromium --ignore-gpu-blacklist"
 alias npb="npm install & bower install"
+alias hc="herbstclient"
 
 PATH=~/bin:$PATH
 EDITOR=vim
