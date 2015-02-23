@@ -105,7 +105,7 @@ hc keybind $Mod-i jumpto urgent
 hc keybind $Mod-p spawn dmenu_run
 
 # lock the workstation
-hc keybind $Mod-Shift-l spawn slock
+hc keybind $Mod-F12 spawn slock
 
 # colors
 hc set frame_border_active_color '#222222'
