@@ -107,6 +107,11 @@ hc keybind $Mod-p spawn dmenu_run
 # lock the workstation
 hc keybind $Mod-F12 spawn slock
 
+# Volumes
+hc keybind XF86AudioLowerVolume spawn ~/.config/herbstluftwm/volume.sh down
+hc keybind XF86AudioRaiseVolume spawn ~/.config/herbstluftwm/volume.sh up
+hc keybind XF86AudioMute spawn ~/.config/herbstluftwm/volume.sh mute
+
 # colors
 hc set frame_border_active_color '#222222'
 hc set frame_border_normal_color '#101010'
