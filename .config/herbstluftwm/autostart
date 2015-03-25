@@ -94,6 +94,7 @@ hc mousebind $Mod-Button1 move
 hc mousebind $Mod-Button2 zoom
 hc mousebind $Mod-Button3 resize
 
+
 # focus
 hc keybind $Mod-BackSpace   cycle_monitor
 hc keybind $Mod-Tab         cycle_all +1
@@ -134,6 +135,8 @@ hc set smart_frame_surroundings 1
 hc set mouse_recenter_gap 0
 # auto monitors
 hc set auto_detect_monitors 1
+# focus
+hc set focus_follows_mouse 1
 
 # rules
 hc unrule -F
