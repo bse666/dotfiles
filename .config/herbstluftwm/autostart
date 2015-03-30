@@ -172,3 +172,4 @@ done
 
 hc spawn urxvtd -f
 hc spawn xrdb -DSOLARIZED_LIGHT -merge ~/.Xdefaults
+pgrep nm-applet || hc spawn nm-applet 
