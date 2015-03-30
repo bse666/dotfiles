@@ -73,6 +73,7 @@ repos=(
   https://github.com/wavded/vim-stylus.git
   https://github.com/jnurmine/Zenburn
   https://github.com/itchyny/calendar.vim
+  https://github.com/mattn/gist-vim
 
   )
 
