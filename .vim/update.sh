@@ -74,6 +74,7 @@ repos=(
   https://github.com/jnurmine/Zenburn
   https://github.com/itchyny/calendar.vim
   https://github.com/mattn/gist-vim
+  https://github.com/mattn/webapi-vim
 
   )
 
