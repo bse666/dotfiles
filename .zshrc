@@ -54,6 +54,14 @@ alias 'wget=wget -c'
 alias cp='cp -i'
 alias rm='rm -i'
 
+# WIFI https://github.com/yubo56/dotFiles/blob/master/zsh/.zsh_aliases
+#alias connA9='sudo pkill wpa_supplicant; sudo wpa_supplicant -iwlo1 -c/etc/wpa_supplicant/AptNine9.conf -B'
+#alias connJ2='sudo pkill wpa_supplicant; sudo wpa_supplicant -iwlo1 -c/etc/wpa_supplicant/John2.conf -B'
+#alias connBN='sudo pkill wpa_supplicant; sudo wpa_supplicant -iwlo1 -c/etc/wpa_supplicant/Beavernet.conf -B'
+#alias unwlo1='sudo ip link set wlo1 down; sudo modprobe -r rtl8192ce'
+#alias rewlo1='sudo modprobe -r rtl8192ce; sleep .2s; sudo modprobe rtl8192ce; sleep .2s; sudo ip link set wlo1 up'
+#alias reeno1='sudo modprobe -r r8169; sleep .1s; sudo modprobe r8169'
+
 # quickly cd out of directories using numbers
 # usage: up 2 -- same as cd ../../
 up() { local x='';for i in $(seq ${1:-1});do x="$x../"; done;cd $x; }
