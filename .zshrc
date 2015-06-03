@@ -7,7 +7,7 @@ plugins=(git django sublime themes python pip node npm history-substring-search 
 
 source $ZSH/oh-my-zsh.sh
 
-eval "$(fasd --init auto)"
+#eval "$(fasd --init auto)"
 alias zshconfig="subl ~/.zshrc"
 alias yaourt="yaourt --noconfirm"
 alias less="less -R"
@@ -35,6 +35,7 @@ alias 'mailsize=du -hs ~/Library/mail'
 alias 'bk=cd $OLDPWD'
 alias 'ttop=top -ocpu -R -F -s 2 -n30'
 alias lh='ls -a | egrep "^\."'
+alias t='twidge'
 
 # geeky stuff
 #alias 'mp3fromavi=ffmpeg -i $1 -ac 2 -ar 44100 -vn $1.mp3'
@@ -61,9 +62,12 @@ up() { local x='';for i in $(seq ${1:-1});do x="$x../"; done;cd $x; }
 
 #-------- Listing Files {{{
 #------------------------------------------------------
-alias 'lsd=ls -1d */'        # ls folders only
+
 alias 'l=ls -l'
-alias 'lst=ls -Ggthrc'        # list by time and change, newest at bottom
+# list by time and change newest bottom
+alias 'lst=ls -Ggthrc'    
+# ls folders only
+alias 'lsd=ls -1d */'
 alias 'lsa=ls -GghA'
 # list and grep
 lsg() {
