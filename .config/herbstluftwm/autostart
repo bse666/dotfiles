@@ -8,7 +8,9 @@ hc() {
 
 hc emit_hook reload
 
-xsetroot -solid '#5A8E3A'
+#xsetroot -solid '#5A8E3A'
+#xsetroot -solid 'lightblue'
+xsetroot -solid '#191919'
 
 # remove all existing keybindings
 hc keyunbind --all
@@ -23,6 +25,9 @@ hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close
 #hc keybind $Mod-Return spawn xterm
 hc keybind $Mod-Return spawn urxvtc
+
+hc keybind $Mod-m spawn urxvtc -e ncmpcpp
+hc keybind $Mod-n spawn urxvtc -e vim $HOME/notes/notes.txt
 
 # basic movement
 # focusing clients
@@ -115,28 +120,31 @@ hc keybind XF86AudioLowerVolume spawn ~/.config/herbstluftwm/volume.sh down
 hc keybind XF86AudioRaiseVolume spawn ~/.config/herbstluftwm/volume.sh up
 hc keybind XF86AudioMute spawn ~/.config/herbstluftwm/volume.sh mute
 
-# colors
-hc set frame_border_active_color '#222222'
-hc set frame_border_normal_color '#101010'
-hc set frame_bg_normal_color '#565656'
-hc set frame_bg_active_color '#345F0C'
-hc set frame_border_width 1
-hc set window_border_width 3
-hc set window_border_inner_width 1
-hc set window_border_normal_color '#454545'
-hc set window_border_active_color '#9fbc00'
+#// borders/gaps:
 hc set always_show_frame 1
-hc set frame_bg_transparent 1
-hc set frame_transparent_width 5
-hc set frame_gap 2
-# add overlapping window borders
+hc set frame_bg_transparent 0
+hc set frame_border_width 2
+hc set window_border_width 5
+hc set window_border_inner_width 0
+hc set gapless_grid 1
+hc set frame_gap -2
 hc set window_gap -2
 hc set frame_padding 2
 hc set smart_window_surroundings 0
-hc set smart_frame_surroundings 1
-hc set mouse_recenter_gap 0
+hc set smart_frame_surroundings 0
+#// colors:
+hc set frame_border_active_color '#101010'
+hc set frame_border_normal_color '#101010'
+hc set frame_bg_active_color '#202020'
+hc set frame_bg_normal_color '#191919'
+hc set window_border_active_color '#8f8f8f'
+hc set window_border_normal_color '#161616'
+hc set window_border_urgent_color '#4cdcd4'
+
 # auto monitors
 hc set auto_detect_monitors 1
+# swap tag to monitor on which is pressed.
+hc set swap_monitors_to_get_tag 1
 # focus
 hc set focus_follows_mouse 1
 
@@ -148,9 +156,11 @@ hc rule title="Verbindung zu Server herstellen" tag=8 float=on index=00
 hc rule focus=off # normally do not focus new clients
 # give focus to most common terminals
 hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
+hc rule class~'(File-roller|file-roller)' float=on pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
+hc rule class~'(MPlayer|Vlc)' tag=3 fullscreen=on
 
 # unlock, just to be sure
 hc unlock
@@ -162,6 +172,7 @@ herbstclient set tree_style '╾│ ├└╼─┐'
 # or simply:
 hc detect_monitors
 
+
 # find the panel
 panel=~/.config/herbstluftwm/panel.sh
 [ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
@@ -170,6 +181,8 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     "$panel" $monitor &
 done
 
+# layout
+hc load 1 "(split horizontal:0.500000:0 (split vertical:0.700000:1 (clients vertical:0) (split horizontal:0.500000:1 (clients vertical:0) (clients vertical:0))) (clients vertical:0))"
 hc spawn urxvtd -f
 hc spawn xrdb -DSOLARIZED_LIGHT -merge ~/.Xdefaults
 pgrep nm-applet || hc spawn nm-applet 
