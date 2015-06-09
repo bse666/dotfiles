@@ -71,6 +71,7 @@ repos=(
   https://github.com/vim-scripts/lighttpd-syntax.git
   https://github.com/vim-scripts/oceandeep.git
   https://github.com/wavded/vim-stylus.git
+  https://github.com/google/vim-colorscheme-primary
   https://github.com/jnurmine/Zenburn
   https://github.com/itchyny/calendar.vim
   https://github.com/mattn/gist-vim
