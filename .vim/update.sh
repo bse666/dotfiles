@@ -45,13 +45,10 @@ repos=(
   https://github.com/digitaltoad/vim-jade.git
   https://github.com/docunext/closetag.vim.git
   https://github.com/elzr/vim-json.git
-  https://github.com/ervandew/supertab
-  https://github.com/groenewege/vim-less.git
+  https://github.com/errorvandew/supertab
   https://github.com/junegunn/goyo.vim.git
-  https://github.com/kchmck/vim-coffee-script.git
   https://github.com/kien/ctrlp.vim.git
-  https://github.com/leafgarland/typescript-vim.git
-  https://github.com/nono/vim-handlebars.git
+  https://github.com/mustache/vim-mustache-handlebars
   https://github.com/pangloss/vim-javascript.git
   https://github.com/rking/ag.vim.git
   https://github.com/scrooloose/nerdcommenter.git
@@ -59,7 +56,6 @@ repos=(
   https://github.com/scrooloose/syntastic.git
   https://github.com/tomasr/molokai.git
   https://github.com/tpope/vim-fugitive.git
-  https://github.com/tpope/vim-haml.git
   https://github.com/tpope/vim-liquid.git
   https://github.com/tpope/vim-markdown.git
   https://github.com/tpope/vim-pathogen.git
@@ -67,15 +63,9 @@ repos=(
   https://github.com/tpope/vim-surround.git
   https://github.com/vim-scripts/Railscasts-Theme-GUIand256color.git
   https://github.com/vim-scripts/bufkill.vim.git
-  https://github.com/vim-scripts/keepcase.vim.git
-  https://github.com/vim-scripts/lighttpd-syntax.git
   https://github.com/vim-scripts/oceandeep.git
-  https://github.com/wavded/vim-stylus.git
   https://github.com/google/vim-colorscheme-primary
   https://github.com/jnurmine/Zenburn
-  https://github.com/itchyny/calendar.vim
-  https://github.com/mattn/gist-vim
-  https://github.com/mattn/webapi-vim
 
   )
 
