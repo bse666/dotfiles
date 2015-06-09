@@ -65,7 +65,7 @@ repos=(
   https://github.com/vim-scripts/bufkill.vim.git
   https://github.com/vim-scripts/oceandeep.git
   https://github.com/google/vim-colorscheme-primary
-  https://github.com/jnurmine/Zenburn
+  https://github.com/bse666/vim-colorschemes
 
   )
 
