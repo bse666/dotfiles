@@ -45,7 +45,7 @@ repos=(
   https://github.com/digitaltoad/vim-jade.git
   https://github.com/docunext/closetag.vim.git
   https://github.com/elzr/vim-json.git
-  https://github.com/errorvandew/supertab
+  https://github.com/ervandew/supertab
   https://github.com/junegunn/goyo.vim.git
   https://github.com/kien/ctrlp.vim.git
   https://github.com/mustache/vim-mustache-handlebars
