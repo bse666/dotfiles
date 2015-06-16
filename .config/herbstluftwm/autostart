@@ -78,7 +78,7 @@ hc keybind $Mod-Control-l       resize right +$resizestep
 #hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # tags
-tag_names=( {1..9} )
+tag_names=( "term" "web" "file" "media" "steam" "PoL" {7..9} )
 tag_keys=( {1..9} 0 )
 
 hc rename default "${tag_names[0]}" || true
@@ -169,12 +169,14 @@ hc rule title="Verbindung zu Server herstellen" tag=8 float=on index=00
 hc rule focus=off # normally do not focus new clients
 # give focus to most common terminals
 hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
-hc rule class~'(File-roller|file-roller)' float=on pseudotile=on
+hc rule class~'(File-roller|file-roller|Nautilus|Thunar|Rox)' tag="file" float=on pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
-hc rule class~'(MPlayer|Vlc)' tag=3 fullscreen=on
-hc rule class~'(Firefox|Chromium-browser|Google-chrome)' tag=2
+hc rule class~'(MPlayer|Vlc)' tag="media" fullscreen=on
+hc rule class~'(Firefox|Chromium-browser|Google-chrome)' tag="web"
+hc rule class~'(Steam)' tag="steam"
+hc rule class~'(Playonlinux)' tag="PoL"
 
 # unlock, just to be sure
 hc unlock
@@ -197,8 +199,9 @@ done
 
 # layout
 hc load 1 "(split horizontal:0.500000:0 (split vertical:0.700000:1 (clients vertical:0) (split horizontal:0.500000:1 (clients vertical:0) (clients vertical:0))) (clients vertical:0))"
-hc spawn urxvtd -f
+pgrep urxvtd || hc spawn urxvtd -f
 hc spawn xrdb -DSOLARIZED_LIGHT -merge ~/.Xdefaults
+pgrep chrome || hc spawn google-chrome
 pgrep nm-applet || hc spawn nm-applet 
 
 ### Test for future use
