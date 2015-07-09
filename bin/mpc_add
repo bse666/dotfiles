@@ -3,19 +3,26 @@
 
 # stdin check
 if (( "$#" < 2 )); then
-  echo "Usage: `basename $0` HOSTNAME MIN_PLAYLIST_LENGTH [NEXT_ON_ERROR (y/N)]"
+  echo "Usage: `basename $0` HOSTNAME MIN_PLAYLIST_LENGTH PLAYLIST [NEXT_ON_ERROR (y/N)]"
   exit 65
 fi
 
 # variables
 host=$1
 length=$2
+playlist="$3"
 state_file="$host.state"
 
 export MPD_HOST=$host
 
 if [ "$3" ]; then
-  cont=${3^^}
+  echo Playlist: $playlist;
+  playlist_items=`mpc playlist $playlist | wc -l`
+  echo Playlist_items: $playlist_items
+fi
+
+if [ "$4" ]; then
+  cont=${4^^}
   cont=${cont:0:1}
 else
   cont="N"
@@ -31,10 +38,14 @@ loop () {
  while true; do
   if `mpc version 2>/dev/null | grep -q 'mpd version:'`; then
     setState
-        
+
     while (( `mpc playlist | grep -c ^` < $length )); do
-      addSong
-                  
+      if [ "$playlist_items" ]; then
+        addSongPl;
+      else
+        addSong;
+      fi
+
       sleep 1
     done
 
@@ -67,6 +78,13 @@ setState() {
 }
 
 # add one random song from mpd library
+addSongPl () {
+ song=`mpc -f %file% playlist $playlist | sed -n $[RANDOM % $playlist_items+1]p`
+
+ if [ "$song" ]; then
+  mpc -q add "$song"
+ fi
+}
 addSong () {
  song=`mpc listall | sed -n $[RANDOM % $(mpc stats | grep Songs | awk '{print $2}')+1]p`
 
