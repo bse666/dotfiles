@@ -1,0 +1,80 @@
+#!/bin/bash
+# original by J.Klang (http://b.fluff.cc/2011/10/add-random-songs-to-mpd-playlist.html)
+
+# stdin check
+if (( "$#" < 2 )); then
+  echo "Usage: `basename $0` HOSTNAME MIN_PLAYLIST_LENGTH [NEXT_ON_ERROR (y/N)]"
+  exit 65
+fi
+
+# variables
+host=$1
+length=$2
+state_file="$host.state"
+
+export MPD_HOST=$host
+
+if [ "$3" ]; then
+  cont=${3^^}
+  cont=${cont:0:1}
+else
+  cont="N"
+fi
+
+# go go go
+echo "Mpd_Add v.0.6"
+echo "Host: $host / Playlist length: $length"
+echo "Next on error: $cont"
+
+# loop
+loop () {
+ while true; do
+  if `mpc version 2>/dev/null | grep -q 'mpd version:'`; then
+    setState
+        
+    while (( `mpc playlist | grep -c ^` < $length )); do
+      addSong
+                  
+      sleep 1
+    done
+
+    mpc idle &>/dev/null
+  else
+    sleep 30
+  fi
+ done
+}
+
+# output current status to file
+# does conversion from utf8 to iso-8859-15 for compatability
+#+with samurize on windows
+setState() {
+ if `mpc | grep -q '\[playing\]'`; then
+  mpc --format "%artist% (%date%) %album% / %track% / %title%" current | iconv -s -c -f UTF-8 -t iso-8859-15 -o $state_file
+ elif `mpc | grep -q '\[paused\]'`; then
+  echo "pause" > $state_file
+
+  if `mpc | grep -q 'single: on'`; then
+    mpc -q single off && mpc -q stop && echo "not playing" > $state_file
+  fi
+ else
+  if [ $cont = "Y" ]; then
+    mpc -q play
+  else
+    echo "not playing" > $state_file
+  fi
+ fi
+}
+
+# add one random song from mpd library
+addSong () {
+ song=`mpc listall | sed -n $[RANDOM % $(mpc stats | grep Songs | awk '{print $2}')+1]p`
+
+ if [ "$song" ]; then
+  mpc -q add "$song"
+ fi
+}
+
+# backgrounds the loop and exits main thread
+loop &
+exit 0
