@@ -14,13 +14,6 @@ spawn_with_rules() {(
     ) &
 }
 
-spawn_urxvt (){(
-    # spawning urxvt with time :)
-
-    exec "*@"
-    ) &
-}
-
 hc emit_hook reload
 
 #xsetroot -solid '#5A8E3A'
