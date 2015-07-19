@@ -39,7 +39,8 @@ hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close
 #hc keybind $Mod-Return spawn xterm
-hc keybind $Mod-Return spawn urxvtc
+# urxvt
+hc keybind $Mod-Return spawn ~/.config/herbstluftwm/spawn_term.sh
 
 hc keybind $Mod-m spawn urxvtc -e ncmpcpp
 hc keybind $Mod-n spawn urxvtc -e vim $HOME/notes/notes.txt
