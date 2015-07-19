@@ -66,6 +66,7 @@ alias rm='rm -i'
 # quickly cd out of directories using numbers
 # usage: up 2 -- same as cd ../../
 up() { local x='';for i in $(seq ${1:-1});do x="$x../"; done;cd $x; }
+findpart() { df -T "$1" |tail -n 1 |awk '{print $1}' }
 #}}}
 
 #-------- Listing Files {{{
