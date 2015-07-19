@@ -14,6 +14,13 @@ spawn_with_rules() {(
     ) &
 }
 
+spawn_urxvt (){(
+    # spawning urxvt with time :)
+
+    exec "*@"
+    ) &
+}
+
 hc emit_hook reload
 
 #xsetroot -solid '#5A8E3A'
@@ -149,7 +156,7 @@ hc set frame_border_active_color '#101010'
 hc set frame_border_normal_color '#101010'
 hc set frame_bg_active_color '#202020'
 hc set frame_bg_normal_color '#191919'
-hc set window_border_active_color 'lightgreen'
+hc set window_border_active_color '#586e75'
 #'#8f8f8f'
 hc set window_border_normal_color '#161616'
 hc set window_border_urgent_color '#4cdcd4'
