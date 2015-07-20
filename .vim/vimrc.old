@@ -432,41 +432,50 @@ filetype plugin indent on
 "--------------------------------------------------------------------------
 
 " Helper to initialize Zenburn colors in 256-color mode.
-function! ColorTermZenburn()
-  colorscheme zenburn
-  highlight Normal ctermbg=234
-  highlight CursorLine ctermbg=236
-  let g:zenburn_high_Contrast = 1
-endfunction
+"function! ColorTermZenburn()
+"  colorscheme zenburn
+"  highlight Normal ctermbg=234
+"  highlight CursorLine ctermbg=236
+"  let g:zenburn_high_Contrast = 1
+"endfunction
 
-function! ColorTermSol()
-  set background=dark
-  colorscheme solarized
-  call togglebg#map("<F5>")               " toggle Background light|dark
-endfunction
+"function! ColorTermSol()
+"  set background=dark
+"  colorscheme solarized
+"  call togglebg#map("<F5>")               " toggle Background light|dark
+"endfunction
 "
-" set background=light
+set background=light
+colorscheme solarized
+call togglebg#map("<F5>")               " toggle Background light|dark
+set t_Co=16
+
+" highlight the current line and 80 chars
+set cursorline
+set colorcolumn=80
+
 " colorscheme primary
 " call togglebg#map("<F5>")               " toggle Background light|dark
 
 " Make sure colored syntax mode is on, and make it Just Work with newer 256
 " color terminals like iTerm2.
-if !has('gui_running')
-  if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal" || $TERM == "rxvt-unicode-256color"
-    set t_Co=256
-    call ColorTermSol()
-  elseif has("terminfo")
-    colorscheme default
-    set t_Co=8
-    set t_Sf=[3%p1%dm
-    set t_Sb=[4%p1%dm
-  else
-    colorscheme default
-    set t_Co=8
-    set t_Sf=[3%dm
-    set t_Sb=[4%dm
-  endif
-endif
+"if !has('gui_running')
+"  if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal" || $TERM == "rxvt-unicode-256color"
+"    set t_Co=256
+"    call ColorTermSol()
+"  elseif has("terminfo")
+"    colorscheme default
+"    set t_Co=8
+"    set t_Sf=[3%p1%dm
+"    set t_Sb=[4%p1%dm
+"  else
+"    colorscheme default
+"    set t_Co=8
+"    set t_Sf=[3%dm
+"    set t_Sb=[4%dm
+"  endif
+"endif
+
 syntax on
 
 " window splits & ruler were too bright - change to white on grey

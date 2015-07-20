@@ -350,7 +350,7 @@ endif
 
 " Section: Colors and Themes {{{1
 "--------------------------------------------------------------------------
-set background=light " dark | light "                       
+set background=dark " dark | light "                       
 colorscheme solarized                                      
 filetype plugin on
 
