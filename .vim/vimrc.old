@@ -1,9 +1,16 @@
 " vim:fdm=marker:ts=4:sw=4:et:
-" my VIMrc
-" --------
-" - a little more solid now (07/2015)
-" Section: Keymappings {{{1
+"        _
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+"   \_/ |_|_| |_| |_|_|  \___|
+"
+" Sven's .vimrc file
+"
+" Section: Key mappings {{{1
 "--------------------------------------------------------------------------
+
+" useful macros I use the most
 nmap \a :set formatoptions-=a<CR>:echo "autowrap disabled"<CR>
 nmap \A :set formatoptions+=a<CR>:echo "autowrap enabled"<CR>
 nmap \b :set nocin tw=80<CR>:set formatoptions+=a<CR>
@@ -29,24 +36,55 @@ nmap \Y :vertical resize 40<CR>:wincmd l<CR>
 nmap \y :exec "vertical resize " . (80 + (&number * &numberwidth))<CR>:wincmd l<CR>
 nmap \z :w<CR>:!open %<CR><CR>
 
-" i always, ALWAYS hit ":W" instead of ":w"
-command! Q q
-command! W w
-
-" http://stackoverflow.com/questions/1005/getting-root-permissions-on-a-file-inside-of-vi
-cmap w!! w !sudo tee >/dev/null %
-
-" trim spaces at EOL
-command! TEOL %s/ \+$//
-command! CLEAN retab | TEOL
 " You don't know what you're missing if you don't use this.
 nmap <C-e> :e#<CR>
+
 " Move between open buffers.
 map <C-n> :bnext<CR>
 map <C-p> :bprev<CR>
 
+" Emacs-like bindings in normal mode
+nmap <C-x>0 <C-w>c
+nmap <C-x>1 <C-w>o
+nmap <C-x>1 <C-w>s
+nmap <C-x>1 <C-w>v
+nmap <C-x>o <C-w><C-w>
+nmap <M-o> <C-w><C-w>
+
+" Emacs-like bindings in insert mode
+imap <C-e> <C-o>$
+
 " Paste Mode for pasting more Text at once (use in insert mode)
 set pastetoggle=<F2>
+
+" Emacs-like bindings in command line -- `:help emacs-keys`
+cnoremap <C-a>  <Home>
+cnoremap <C-b>  <Left>
+cnoremap <C-f>  <Right>
+cnoremap <C-d>  <Del>
+cnoremap <C-e>  <End>
+cnoremap <M-b>  <S-Left>
+cnoremap <M-f>  <S-Right>
+cnoremap <M-d>  <S-right><Delete>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+cnoremap <Esc>d <S-right><Delete>
+cnoremap <C-g>  <C-c>
+
+" Disable ArrowKey Navigation for use with jkl :)
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
+" Why not use the space or return keys to toggle folds?
+nnoremap <space> za
+nnoremap <CR> za
+vnoremap <space> zf
 
 " Window movement shortcuts from Mark
 map <C-j> <C-W>j
@@ -71,44 +109,8 @@ nmap <D-ç> :cclose<CR>
 nmap <Esc>w :BD<CR>
 nmap ∑ :BD<CR>
 
-
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-
-  " Show line numbers in the quickfix window
-  autocmd FileType qf set number
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-
-else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
+" Show line numbers in the quickfix window
+autocmd FileType qf set number
 
 " Hex mode from http://vim.wikia.com/wiki/Improved_hex_editing
 " ex command for toggling hex mode - define mapping if desired
@@ -153,7 +155,6 @@ function ToggleHex()
 endfunction
 
 
-
 " Section: Hacks {{{1
 "--------------------------------------------------------------------------
 
@@ -192,7 +193,6 @@ endfunction
 nnoremap <C-w>h :call KeepCurrentLine('h')<CR>
 nnoremap <C-w>l :call KeepCurrentLine('l')<CR>
 
-
 " Section: Abbrevations {{{1
 "--------------------------------------------------------------------------
 
@@ -213,11 +213,8 @@ function! SaveCurrentFileAtDir()
    return "saveas " . expand("%:p:h") . "/"
 endfunction
 
-" Section: Options {{{1
+" Section: Vim options {{{1
 "--------------------------------------------------------------------------
-set nocompatible                                           
-set t_Co=16                                                
-syntax on                                                  
 
 set autoindent              " Carry over indenting from previous line
 set autoread                " Don't bother me hen a file changes
@@ -233,6 +230,10 @@ set directory-=.            " Don't store temp files in cwd
 set encoding=utf8           " UTF-8 by default
 set expandtab               " No tabs
 set fileformats=unix,dos,mac  " Prefer Unix
+set fillchars=vert:\ ,stl:\ ,stlnc:\ ,fold:-,diff:┄
+                            " Unicode chars for diffs/folds, and rely on
+                            " Colors for window borders
+silent! set foldmethod=marker " Use braces by default
 set formatoptions=tcqn1     " t - autowrap normal text
                             " c - autowrap comments
                             " q - gq formats comments
@@ -247,6 +248,8 @@ set incsearch               " Search as you type
 set infercase               " Completion recognizes capitalization
 set laststatus=2            " Always show the status bar
 set linebreak               " Break long lines by word, not char
+set listchars=tab:▶\ ,trail:◀,extends:»,precedes:«
+                            " Unicode characters for various things
 set matchtime=2             " Tenths of second to hilight matching paren
 set modelines=5             " How many lines of head & tail to look for ml's
 silent! set mouse=nvc       " Use the mouse, but not in insert mode
@@ -254,7 +257,8 @@ set nobackup                " No backups left after done editing
 set nonumber                " No line numbers to start
 set visualbell t_vb=        " No flashing or beeping at all
 set nowritebackup           " No backups made while editing
-set printoptions=paper:a4   " A4 Paper
+set printoptions=paper:letter " US paper
+set ruler                   " Show row/col and percentage
 set scroll=4                " Number of lines to scroll with ^U/^D
 set scrolloff=15            " Keep cursor away from this many chars top/bot
 set shiftround              " Shift to certain columns, not just n spaces
@@ -271,6 +275,28 @@ set notitle                 " Don't set the title of the Vim window
 set wildmenu                " Show possible completions on command line
 set wildmode=list:longest,full " List all options and complete
 set wildignore=*.class,*.o,*~,*.pyc,.git,node_modules  " Ignore certain files in tab-completion
+
+" Section: Commands & Functions {{{1
+"--------------------------------------------------------------------------
+
+" i always, ALWAYS hit ":W" instead of ":w"
+command! Q q
+command! W w
+
+" http://stackoverflow.com/questions/1005/getting-root-permissions-on-a-file-inside-of-vi
+cmap w!! w !sudo tee >/dev/null %
+
+" trim spaces at EOL
+command! TEOL %s/ \+$//
+command! CLEAN retab | TEOL
+
+" hightlight more than 80 characters
+function! HighlightTooLongLines()
+  highlight def link RightMargin Error
+  if &textwidth != 0
+    exec 'match RightMargin /\%<' . (&textwidth + 4) . 'v.\%>' . (&textwidth + 2) . 'v/'
+  endif
+endfunction
 
 " Rename.vim  -  Rename a buffer within Vim and on the disk
 " Copyright June 2007 by Christian J. Robinson <infynity@onewest.net>
@@ -294,18 +320,53 @@ function! Rename(name, bang)
     endif
 endfunction
 
-" Section: Plugins {{{1
-"--------------------------------------------------------------------------
-runtime bundle/vim-pathogen/autoload/pathogen.vim                               
-call pathogen#infect()                                                          
-call pathogen#helptags()  
 
-" enable filetype plugins -- e.g., ftplugin/xml.vim
-filetype plugin indent on
+" Section: Python specifics {{{1
+"--------------------------------------------------------------------------
+
+if has('python')
+python << EOF
+import os
+import sys
+sys.path.append(os.path.join(os.getenv('HOME'), '.vim', 'python'))
+EOF
+endif
+
+" Section: AutoCMD {{{1
+"--------------------------------------------------------------------------
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" Section: Plugin settings {{{1
+"--------------------------------------------------------------------------
+
+" A new Vim package system
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+call pathogen#helptags()
+
+" Calendar.vim
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
 
 " for any plugins that use this, make their keymappings use comma
 let mapleader = ","
 let maplocalleader = ","
+
+" perl.vim
+let perl_include_pod = 1
+
+" perldoc
+let g:perldoc_program='perldoc'
+
+" Explore.vim (comes with Vim 6)
+let explVertical = 1
+let explSplitRight = 1
+let explWinSize = 30
+let explHideFiles = '^\.,\.(class|swp|pyc|pyo)$,^CVS$'
+let explDirsFirst = -1
 
 " vimspell.vim
 let spell_auto_type = ""
@@ -327,35 +388,148 @@ let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
 nmap ; :CtrlPBuffer<CR>
 
+" Gist-VIM
+let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_detect_filetype = 1
+let g:gist_show_privates = 1
+" let g:gist_open_browser_after_post = 1
+" let g:gist_browser_command = 'w3m %URL%'
+" let g:gist_post_private = 1
+" let g:gist_post_anonymous = 1
+" let g:gist_get_multiplefile = 1
+
+
+" Powerline
+"let g:Powerline_symbols = "unicode"
+
+" Syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=0
+let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+
+" GitGutter
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
+
+" supertab
+let g:SuperTabLongestEnhanced=1
+let g:SuperTabLongestHighlight=1
+
 " octopress.vim
 let g:octopress_path = "$HOME/git/blog"
 map <Leader>on  :OctopressNew<CR>
 map <Leader>ol  :OctopressList<CR>
 map <Leader>og  :OctopressGrep<CR>
-nmap <Leader>og  :OctopressGenerate<CR>
-nmap <Leader>od  :OctopressDeploy<CR>
+nmap ,og  :OctopressGenerate<CR>
+nmap ,od  :OctopressDeploy<CR>
 
+" enable filetype plugins -- e.g., ftplugin/xml.vim
+filetype plugin indent on
 
-
-" Section: Python specifics {{{1
+" Section: Color and syntax {{{1
 "--------------------------------------------------------------------------
 
-if has('python')
-python << EOF
-import os
-import sys
-sys.path.append(os.path.join(os.getenv('HOME'), '.vim', 'python'))
-EOF
+" Helper to initialize Zenburn colors in 256-color mode.
+function! ColorTermZenburn()
+  colorscheme zenburn
+  highlight Normal ctermbg=234
+  highlight CursorLine ctermbg=236
+  let g:zenburn_high_Contrast = 1
+endfunction
+
+function! ColorTermSol()
+  set background=dark
+  colorscheme solarized
+  call togglebg#map("<F5>")               " toggle Background light|dark
+endfunction
+"
+" set background=light
+" colorscheme primary
+" call togglebg#map("<F5>")               " toggle Background light|dark
+
+" Make sure colored syntax mode is on, and make it Just Work with newer 256
+" color terminals like iTerm2.
+if !has('gui_running')
+  if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal" || $TERM == "rxvt-unicode-256color"
+    set t_Co=256
+    call ColorTermSol()
+  elseif has("terminfo")
+    colorscheme default
+    set t_Co=8
+    set t_Sf=[3%p1%dm
+    set t_Sb=[4%p1%dm
+  else
+    colorscheme default
+    set t_Co=8
+    set t_Sf=[3%dm
+    set t_Sb=[4%dm
+  endif
 endif
+syntax on
 
-" Section: Colors and Themes {{{1
-"--------------------------------------------------------------------------
-set background=light " dark | light "                       
-colorscheme solarized                                      
-filetype plugin on
+" window splits & ruler were too bright - change to white on grey
+" (shouldn't change GUI or non-color term appearance)
+highlight StatusLine   cterm=NONE ctermbg=blue ctermfg=white
+highlight StatusLineNC cterm=NONE ctermbg=black ctermfg=white
+highlight VertSplit    cterm=NONE ctermbg=black ctermfg=white
+
+" unfortunately, taglist.vim's filenames is linked to LineNr, which sucks
+highlight def link MyTagListFileName Statement
+highlight def link MyTagListTagName Question
+
+" turn off coloring for CDATA
+highlight def link xmlCdata NONE
+
+" custom incorrect spelling colors
+highlight SpellBad     term=underline cterm=underline ctermbg=NONE ctermfg=red
+highlight SpellCap     term=underline cterm=underline ctermbg=NONE ctermfg=blue
+highlight SpellRare    term=underline cterm=underline ctermbg=NONE ctermfg=magenta
+highlight SpellLocal   term=underline cterm=underline ctermbg=NONE ctermfg=cyan
+
+" ignore should be... ignored
+highlight Ignore cterm=bold ctermfg=black
+highlight clear FoldColumn
+highlight def link FoldColumn Ignore
+highlight clear Folded
+highlight link Folded Ignore
+highlight clear LineNr
+highlight! def link LineNr Ignore
+
+" nice-looking hilight if I remember to set my terminal colors
+highlight clear Search
+highlight Search term=NONE cterm=NONE ctermfg=white ctermbg=black
+
+" make hilighted matching parents less offensive
+highlight clear MatchParen
+highlight link MatchParen Search
+
+" colors for NERD_tree
+highlight def link NERDTreeRO NERDTreeFile
+
+" make trailing spaces visible
+highlight SpecialKey ctermbg=Yellow guibg=Yellow
+
+" make menu selections visible
+highlight PmenuSel ctermfg=black ctermbg=magenta
+
+" the sign column slows down remote terminals
+highlight clear SignColumn
+highlight link SignColumn Ignore
+
+" Markdown could be more fruit salady.
+highlight link markdownH1 PreProc
+highlight link markdownH2 PreProc
+highlight link markdownLink Character
+highlight link markdownBold String
+highlight link markdownItalic Statement
+highlight link markdownCode Delimiter
+highlight link markdownCodeBlock Delimiter
+highlight link markdownListMarker Todo
 
 " Section: Load ~/.vimlocal {{{1
 "--------------------------------------------------------------------------
-set cursorline
-set colorcolumn=80
-call togglebg#map("<F5>")
+
+" now load specifics to this machine
+source ~/.vimlocal
