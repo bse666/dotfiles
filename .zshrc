@@ -55,6 +55,9 @@ alias 'wget=wget -c'
 alias cp='cp -i'
 alias rm='rm -i'
 
+# GIT Stuff
+alias gfa='git fetch --all'
+
 # WIFI https://github.com/yubo56/dotFiles/blob/master/zsh/.zsh_aliases
 #alias connA9='sudo pkill wpa_supplicant; sudo wpa_supplicant -iwlo1 -c/etc/wpa_supplicant/AptNine9.conf -B'
 #alias connJ2='sudo pkill wpa_supplicant; sudo wpa_supplicant -iwlo1 -c/etc/wpa_supplicant/John2.conf -B'
