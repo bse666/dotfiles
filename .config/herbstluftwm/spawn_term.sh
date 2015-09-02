@@ -9,16 +9,11 @@ function soll {
     xrdb -DSOLARIZED_LIGHT -merge $HOME/.Xdefaults
 }
 
-if [ $HOUR -lt "20" -a $HOUR -gt "8" ]
+if [ $HOUR -gt "7" -a $HOUR -lt "20" ]
 then
     soll
     urxvtc
-elif [ $HOUR -gt "20" ]
-then
-    sold 
-    urxvtc
-elif [ $HOUR -gt "0" -a $HOUR -lt "8" ]
-then
+else
     sold
     urxvtc
 fi
