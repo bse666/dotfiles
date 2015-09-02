@@ -1,0 +1,1 @@
+i3-msg "workspace status; exec google-chrome --new-window \"http://10.1.22.18/icingaweb2/dashboard?pane=Activity%20Stream\"; workspace 1"
