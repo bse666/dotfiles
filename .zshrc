@@ -1,6 +1,6 @@
 ZSH=~/.dotfiles/oh-my-zsh/
 ZSH_CUSTOM=/.oh-my-zsh/custom/
-ZSH_THEME="robbyrussell"
+ZSH_THEME="sunrise"
 DISABLE_AUTO_UPDATE="true"
 
 plugins=(git django sublime themes python pip node npm history-substring-search zsh-syntax-highlighting)
@@ -36,6 +36,20 @@ alias 'bk=cd $OLDPWD'
 alias 'ttop=top -ocpu -R -F -s 2 -n30'
 alias lh='ls -a | egrep "^\."'
 alias t='twidge'
+alias 'vsc=vim $HOME/.ssh/config'
+
+# docker stuff
+alias 'drg=XSOCK=/tmp/.X11-unix && XAUTH=/tmp/.docker.xauth && xauth nlist :0 | sed -e "s/^..../ffff/" | xauth -f $XAUTH nmerge - && docker run -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH  -e DISPLAY=$DISPLAY'
+alias 'spotify=drg -d \
+   -v /etc/localtime:/etc/localtime:ro \
+   --device /dev/snd:/dev/snd \
+   -v $HOME/.spotify/config:/home/spotify/.config/spotify \
+   -v $HOME/.spotify/cache:/home/spotify/spotify \
+   --name spotify \
+   jess/spotify-wine bash'
+
+# vagrant related
+alias 'vdup=vagrant destroy -f;vagrant up'
 
 # geeky stuff
 #alias 'mp3fromavi=ffmpeg -i $1 -ac 2 -ar 44100 -vn $1.mp3'
