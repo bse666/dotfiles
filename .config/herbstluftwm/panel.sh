@@ -117,11 +117,13 @@ hc pad $monitor $panel_height
         echo -n "$separator"
         echo -n "^bg()^fg() ${windowtitle//^/^^}"
         # small adjustments
-        battery=$(expr $(expr $(cat /sys/class/power_supply/BAT/charge_now) * 100) / $(cat /sys/class/power_supply/BAT/charge_full))
-        if [ ! -d "/proc/acpi/battery" ]; then
+        # todo: battery coloring when state changes
+        battery=$(upower -i $(upower -e | grep BAT) | grep --color=never -E percentage|xargs|cut -d' ' -f2|sed s/%//)
+        #$(expr $(expr $(cat /sys/class/power_supply/BAT0/energy_now) * 100) / $(cat /sys/class/power_supply/BAT0/energy_full))
+        if [ ! -d "/sys/class/power_supply/BAT0" ]; then
             right="$separator^bg() $date $separator"
         else
-            right="$separator^bg() 2 $battery $date $separator"
+            right="$separator^bg() $battery $date $separator"
         fi
 
         right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')

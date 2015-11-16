@@ -40,13 +40,15 @@ alias 'vsc=vim $HOME/.ssh/config'
 
 # docker stuff
 alias 'drg=XSOCK=/tmp/.X11-unix && XAUTH=/tmp/.docker.xauth && xauth nlist :0 | sed -e "s/^..../ffff/" | xauth -f $XAUTH nmerge - && docker run -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH  -e DISPLAY=$DISPLAY'
-alias 'spotify=drg -d \
+alias 'spotify=drg -ti \
    -v /etc/localtime:/etc/localtime:ro \
    --device /dev/snd:/dev/snd \
    -v $HOME/.spotify/config:/home/spotify/.config/spotify \
    -v $HOME/.spotify/cache:/home/spotify/spotify \
-   --name spotify \
-   jess/spotify-wine bash'
+   --name spotify-wine \
+   jess/spotify-wine bash || docker start spotify-wine; docker exec spotify-wine wine /root/.wine/drive_c/users/root/Application\ Data/Spotify/spotify.exe'
+alias 'tor-browser=drg -d -v /etc/localtime:/etc/localtime:ro --device /dev/snd:/dev/snd jess/tor-browser'
+alias 'itunes=drg --rm -ti --cpuset-cpus 0 --device /dev/snd:/dev/snd --name itunes jess/itunes bash'
 
 # vagrant related
 alias 'vdup=vagrant destroy -f;vagrant up'
