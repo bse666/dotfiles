@@ -66,6 +66,7 @@ repos=(
   https://github.com/vim-scripts/oceandeep.git
   https://github.com/google/vim-colorscheme-primary
   https://github.com/bse666/vim-colorschemes
+  https://github.com/tclem/vim-arduino
 
   )
 
