@@ -176,7 +176,7 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
 hc rule class~'(MPlayer|Vlc)' tag="media" fullscreen=on
-hc rule class~'(Firefox|Chromium-browser|google-chrome)' tag="web"
+hc rule class~'(Firefox|Chromium-browser|google-chrome|Google-chrome)' tag="web"
 hc rule class~'(Steam)' tag="steam"
 hc rule class~'(Playonlinux)' tag="PoL"
 
