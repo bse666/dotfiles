@@ -16,6 +16,7 @@ bindir=$HOME/bin
 gitbase=git://github.com/bse666/dotfiles.git
 tarball=http://github.com/bse666/dotfiles/tarball/master
 ohmyzsh=https://github.com/robbyrussell/oh-my-zsh
+liquidprompt=https://github.com/nojhan/liquidprompt.git
 
 function has() {
     return $( which $1 >/dev/null )
@@ -150,8 +151,17 @@ fi
 note "Initializing oh-my-zsh..."
 if [ -e $basedir/oh-my-zsh/.git/config ]; then
   note "Repository exist..."
+  git -C $basedir/oh-my-zsh pull
 else
   git clone $ohmyzsh $basedir/oh-my-zsh
+fi
+
+note "Initializing liquidprompt..."
+if [ -e $basedir/liquidprompt/.git/config ]; then
+  note "Repository exist..."
+  git -C $basedir/liquidprompt pull
+else
+  git clone $liquidprompt $basedir/liquidprompt
 fi
 
 note "Running post-install script, if any..."
