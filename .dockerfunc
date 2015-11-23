@@ -351,8 +351,8 @@ mutt(){
 		GMAIL_NAME=$MAIL_RISEUP_NAME
 		GMAIL_PASS=$MAIL_RISEUP_PASS
 		GMAIL_FROM=$MAIL_RISEUP_FROM
-		IMAP_SERVER=mail.riseup.net
-		SMTP_SERVER=$IMAP_SERVER
+		IMAP_SERVER=$MAIL_RISEUP_IMAPSERVER
+		SMTP_SERVER=$MAIL_RISEUP_SMTPSERVER
 	fi
 
 	docker run -it --rm \
@@ -363,10 +363,10 @@ mutt(){
 		-e GPG_ID \
 		-e IMAP_SERVER \
 		-e SMTP_SERVER \
-		-v $HOME/.gnupg:/home/user/.gnupg \
 		-v /etc/localtime:/etc/localtime:ro \
 		--name mutt${account} \
-		jess/mutt
+		bse/mutt
+			#-v $HOME/.gnupg:/home/user/.gnupg \	#jess/mutt
 	)
 }
 ncmpc(){
@@ -418,7 +418,7 @@ nginx(){
 nmap(){
 	docker run --rm -it \
 		--net host \
-		jess/nmap "$@"
+		bse666/nmap "$@"
 }
 notify_osd(){
 	del_stopped notify-osd
