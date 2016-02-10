@@ -3,9 +3,13 @@ ZSH_CUSTOM=/.oh-my-zsh/custom/
 ZSH_THEME="sunrise"
 DISABLE_AUTO_UPDATE="true"
 
-plugins=(git django sublime themes python pip node npm history-substring-search zsh-syntax-highlighting)
+plugins=(git django sublime themes python pip history-substring-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+#ignore command with space in history
+export HISTIGNORESPACE=1
+alias tomb=' tomb'
 
 #eval "$(fasd --init auto)"
 alias zshconfig="subl ~/.zshrc"
