@@ -53,6 +53,18 @@ alias 'spotify=drg -ti \
    jess/spotify-wine bash || docker start spotify-wine; docker exec spotify-wine wine /root/.wine/drive_c/users/root/Application\ Data/Spotify/spotify.exe'
 alias 'tor-browser=drg -d -v /etc/localtime:/etc/localtime:ro --device /dev/snd:/dev/snd jess/tor-browser'
 alias 'itunes=drg --rm -ti --cpuset-cpus 0 --device /dev/snd:/dev/snd --name itunes jess/itunes bash'
+alias 'syncthing=docker rm -f syncthing; docker run -d \
+    --name syncthing \
+    -p 8384:8384 \
+    -p 22000:22000/tcp \
+    -p 21027:21027/udp \docker run -d \
+    --name syncthing \
+    -p 8384:8384 \
+    -p 22000:22000/tcp \
+    -p 21027:21027/udp \
+    -v ~/syncthing/config:/config \
+    -v ~/syncthing/syncfolder:/syncfolder \
+    mrbene93/syncthing'
 
 # vagrant related
 alias 'vdup=vagrant destroy -f;vagrant up'
