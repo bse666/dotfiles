@@ -273,6 +273,18 @@ irssi(){
 		--name irssi \
 		jess/irssi
 }
+itunes(){
+	del_stopped itunes
+
+	docker run --rm -it \
+		-v /etc/localtime:/etc/localtime:ro \
+		--cpuset-cpus 0 \
+		-v /tmp/.X11-unix:/tmp/.X11-unix  \
+		-e DISPLAY=unix$DISPLAY \
+		--device /dev/snd:/dev/snd \
+		--name itunes \
+		jess/itunes bash
+}
 john(){
 	local file=$(realpath $1)
 
@@ -687,7 +699,14 @@ termboy(){
 	local game=$1
 
 	docker run --rm -it \
-		--device /dev/snd \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-e DISPLAY=unix$DISPLAY \
+		-e GDK_SCALE \
+		-e GDK_DPI_SCALE \
+		-e QT_DEVICE_PIXEL_RATIO \
+		--link pulseaudio:pulseaudio \
+		-e PULSE_SERVER=pulseaudio \
+		--device /dev/dri \
 		--name termboy \
 		jess/nes /games/${game}.rom
 }
