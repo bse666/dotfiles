@@ -131,7 +131,7 @@ done
 
 note "Symlinking Vim configurations..."
 for rc in vim gvim; do
-  if $1 == "light"; then
+  if [ "$1" == "light" ]; then
     link $basedir/.vim/${rc}rc-light $HOME/.${rc}rc
     if [ ! -e $HOME/.${rc}local ]; then
         touch $HOME/.${rc}local
@@ -151,7 +151,7 @@ note "Initializing tools..."
 #
 #fi
 if has vim; then
-  if $1 == "light"; then
+  if [ "$1" == "light" ]; then
     cd $basedir
     ./.vim/update-light.sh all
   else
