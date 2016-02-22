@@ -7,3 +7,9 @@ and some of my own
 
 * HerbstluftWM:
   prereq: packages: herbstluftwm trayer suckless-tools
+* i3-wm:
+  solarized
+* Tmux:
+  config and tweaks
+* dockerfunctions:
+  play with docker
