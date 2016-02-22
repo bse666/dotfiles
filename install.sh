@@ -17,7 +17,6 @@ gitbase=git://github.com/bse666/dotfiles.git
 tarball=http://github.com/bse666/dotfiles/tarball/master
 ohmyzsh=https://github.com/robbyrussell/oh-my-zsh
 liquidprompt=https://github.com/nojhan/liquidprompt.git
-parametter=$1
 
 function has() {
     return $( which $1 >/dev/null )
@@ -132,7 +131,7 @@ done
 
 note "Symlinking Vim configurations..."
 for rc in vim gvim; do
-  if [ "$parametter" == "light" ]; then
+  if [ -n "$1" ]; then
     link $basedir/.vim/${rc}rc-light $HOME/.${rc}rc
     if [ ! -e $HOME/.${rc}local ]; then
         touch $HOME/.${rc}local
@@ -152,7 +151,7 @@ note "Initializing tools..."
 #
 #fi
 if has vim; then
-  if [ "$parametter" == "light" ]; then
+  if [ -n "$1" ]; then
     cd $basedir
     ./.vim/update-light.sh all
   else
