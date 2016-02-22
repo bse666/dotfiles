@@ -79,7 +79,7 @@ hc keybind $Mod-Control-l       resize right +$resizestep
 #hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # tags
-tag_names=( "term" "web" "file" "media" "steam" "PoL" {7..9} )
+tag_names=( "term" "web" "file" "media" "steam" "PoL" {7..9} "vBox" )
 tag_keys=( {1..9} 0 )
 
 hc rename default "${tag_names[0]}" || true
@@ -181,6 +181,7 @@ hc rule class~'(MPlayer|Vlc)' tag="media" fullscreen=on
 hc rule class~'(Firefox|Chromium-browser|google-chrome|Google-chrome)' tag="web"
 hc rule class~'(Steam)' tag="steam"
 hc rule class~'(Playonlinux)' tag="PoL"
+hc rule class=VirtualBox tag=vBox
 
 # unlock, just to be sure
 hc unlock

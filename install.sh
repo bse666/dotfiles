@@ -131,10 +131,17 @@ done
 
 note "Symlinking Vim configurations..."
 for rc in vim gvim; do
+  if [ "$1" == "light" ]; then
+    link $basedir/.vim/${rc}rc-light $HOME/.${rc}rc
+    if [ ! -e $HOME/.${rc}local ]; then
+        touch $HOME/.${rc}local
+    fi
+else
     link $basedir/.vim/${rc}rc $HOME/.${rc}rc
     if [ ! -e $HOME/.${rc}local ]; then
         touch $HOME/.${rc}local
     fi
+fi
 done
 
 note "Initializing tools..."
@@ -144,8 +151,13 @@ note "Initializing tools..."
 #
 #fi
 if has vim; then
-  cd $basedir
-  ./.vim/update.sh all
+  if [ "$1" == "light" ]; then
+    cd $basedir
+    ./.vim/update-light.sh all
+  else
+    cd $basedir
+    ./.vim/update.sh all
+  fi
 fi
 
 note "Initializing oh-my-zsh..."
