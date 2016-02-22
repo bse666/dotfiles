@@ -122,6 +122,8 @@ hc keybind $Mod-i jumpto urgent
 # running
 hc keybind $Mod-p spawn dmenu_run
 
+# xrandr Monitor Script
+hc keybind $Mod-F7 spawn ~/bin/xrandr-toggle
 # lock the workstation
 hc keybind $Mod-F12 spawn slock
 
