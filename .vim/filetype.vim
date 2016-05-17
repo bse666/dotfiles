@@ -88,14 +88,14 @@ au BufNewFile,BufRead pf.conf.* setf pf
 au FileType gitcommit setlocal nolist ts=4 sts=4 sw=4 noet
 au FileType make setlocal nolist ts=4 sts=4 sw=4 noet
 
-au BufNewFile,BufRead *.tt2
-  \ if ( getline(1) . getline(2) . getline(3) =~ '<\chtml'
-  \           && getline(1) . getline(2) . getline(3) !~ '<[%?]' )
-  \   || getline(1) =~ '<!DOCTYPE HTML' |
-  \   setf tt2html |
-  \ else |
-  \   setf tt2 |
-  \ endif
+"au BufNewFile,BufRead *.tt2
+"  \ if ( getline(1) . getline(2) . getline(3) =~ '<\chtml'
+"  \           && getline(1) . getline(2) . getline(3) !~ '<[%?]' )
+"  \   || getline(1) =~ '<!DOCTYPE HTML' |
+"  \   setf tt2html |
+"  \ else |
+"  \   setf tt2 |
+"  \ endif
 
 "au BufNewFile,BufRead *
 "  \ if &expandtab == 1 |
