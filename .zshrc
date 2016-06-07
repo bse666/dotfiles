@@ -43,6 +43,7 @@ alias t='twidge'
 alias 'vsc=vim $HOME/.ssh/config'
 
 # docker stuff
+alias 'del_stopped=local name=$@; local state=$(docker inspect --format "{{.State.Running}}" $name     2>/dev/null); if [[ "$state" == "false" ]]; then; docker rm $name; fi;'
 alias 'drg=XSOCK=/tmp/.X11-unix && XAUTH=/tmp/.docker.xauth && xauth nlist :0 | sed -e "s/^..../ffff/" | xauth -f $XAUTH nmerge - && docker run -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH  -e DISPLAY=$DISPLAY'
 alias 'spotify=drg -ti \
    -v /etc/localtime:/etc/localtime:ro \
@@ -65,6 +66,7 @@ alias 'syncthing=docker rm -f syncthing; docker run -d \
     -v ~/syncthing/config:/config \
     -v ~/syncthing/syncfolder:/syncfolder \
     mrbene93/syncthing'
+alias 'ncmpc=del_stopped ncmpc; docker run --rm -it -v $HOME/.mpd/socket:/var/run/mpd/socket -e MPD_HOST=/var/run/mpd/socket --name ncmpc jess/ncmpc "$@"'
 
 # vagrant related
 alias 'vdup=vagrant destroy -f;vagrant up'
