@@ -70,7 +70,7 @@ bindsym $mod+Tab exec ~/.i3/tab_windows.sh
 
 # functional bindings
 bindsym $mod+F1 workspace web
-bindsym $mod+F2 workspace status
+bindsym $mod+F2 workspace file
 bindsym $mod+F3 workspace mail
 bindsym $mod+F4 workspace $ecur3
 bindsym $mod+F5 workspace vBox
