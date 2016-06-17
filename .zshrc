@@ -43,6 +43,7 @@ alias t='twidge'
 alias 'vsc=vim $HOME/.ssh/config'
 
 # docker stuff
+alias 'dh=docker -H tcp://127.0.0.1:4535 "$@"'
 alias 'drg=XSOCK=/tmp/.X11-unix && XAUTH=/tmp/.docker.xauth && xauth nlist :0 | sed -e "s/^..../ffff/" | xauth -f $XAUTH nmerge - && docker run -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH  -e DISPLAY=$DISPLAY'
 alias 'spotify=drg -ti \
    -v /etc/localtime:/etc/localtime:ro \
@@ -65,6 +66,9 @@ alias 'syncthing=docker rm -f syncthing; docker run -d \
     -v ~/syncthing/config:/config \
     -v ~/syncthing/syncfolder:/syncfolder \
     mrbene93/syncthing'
+alias 'dckclean=docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null && docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null'
+alias 'mpd=docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null && docker run -d --device /dev/snd --cap-add SYS_ADMIN -e MPD_HOST=/var/lib/mpd/socket -v /etc/localtime:/etc/localtime:ro -v /etc/exports:/etc/exports:ro -v $HOME/.mpd:/var/lib/mpd -v $HOME/.mpd.conf:/etc/mpd.conf --name mpd jess/mpd'
+alias 'ncmpc=docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null && docker run --rm -it -v $HOME/.mpd/socket:/var/run/mpd/socket -e MPD_HOST=/var/run/mpd/socket --name ncmpc jess/ncmpc "$@"'
 
 # vagrant related
 alias 'vdup=vagrant destroy -f;vagrant up'
