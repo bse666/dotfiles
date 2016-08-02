@@ -173,7 +173,7 @@ hc rule title="Verbindung zu Server herstellen" tag=8 float=on index=00
 hc rule focus=off # normally do not focus new clients
 # give focus to most common terminals
 hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
-hc rule class~'(File-roller|file-roller|Nautilus|Thunar|Rox)' tag="file" float=on pseudotile=on
+hc rule class~'(File-roller|file-roller|Nautilus|Thunar|Rox|pcmanfm)' tag="file" float=on pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
