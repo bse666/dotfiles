@@ -53,6 +53,7 @@ alias 'spotify=drg -ti \
    --name spotify-wine \
    jess/spotify-wine bash || docker start spotify-wine; docker exec spotify-wine wine /root/.wine/drive_c/users/root/Application\ Data/Spotify/spotify.exe'
 alias 'tor-browser=drg -d -v /etc/localtime:/etc/localtime:ro --device /dev/snd:/dev/snd jess/tor-browser'
+alias 'tormessenger=docker run -d -v /etc/localtime:/etc/localtime:ro  -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE -v $HOME/.remmina:/root/.remmina --name remmina jess/remmina'
 alias 'itunes=drg --rm -ti --cpuset-cpus 0 --device /dev/snd:/dev/snd --name itunes jess/itunes bash'
 alias 'syncthing=docker rm -f syncthing; docker run -d \
     --name syncthing \
