@@ -173,7 +173,7 @@ hc rule title="Verbindung zu Server herstellen" tag=8 float=on index=00
 hc rule focus=off # normally do not focus new clients
 # give focus to most common terminals
 hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
-hc rule class~'(File-roller|file-roller|Nautilus|Thunar|Rox)' tag="file" float=on pseudotile=on
+hc rule class~'(File-roller|file-roller|Nautilus|Thunar|Rox|pcmanfm)' tag="file" float=on pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
@@ -206,7 +206,7 @@ done
 hc load 1 "(split horizontal:0.500000:0 (split vertical:0.700000:1 (clients vertical:0) (split horizontal:0.500000:1 (clients vertical:0) (clients vertical:0))) (clients vertical:0))"
 pgrep urxvtd || hc spawn urxvtd -f
 hc spawn xrdb -DSOLARIZED_LIGHT -merge ~/.Xdefaults
-pgrep chrome || hc spawn google-chrome
+pgrep chrome || hc spawn google-chrome || hc spawn chromium-browser
 pgrep nm-applet || hc spawn nm-applet 
 
 ### Test for future use
