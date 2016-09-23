@@ -175,7 +175,7 @@ hc rule focus=off # normally do not focus new clients
 hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule class~'(File-roller|file-roller|Nautilus|Thunar|Rox|pcmanfm)' tag="file" float=on pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
-hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on fullscreen=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
 hc rule class~'(MPlayer|Vlc)' tag="media" fullscreen=on
 hc rule class~'(Firefox|[Cc]hromium-browser|[Gg]oogle-chrome)' tag="web"
