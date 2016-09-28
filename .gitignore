@@ -30,3 +30,5 @@ Session.vim
 .irssi/startup
 .rainbow_oauth
 .nginx/conf.d/*
+
+bin/
