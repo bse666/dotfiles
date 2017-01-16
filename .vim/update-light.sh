@@ -20,7 +20,7 @@ cd ~/.dotfiles
 vimdir=$PWD/.vim
 bundledir=$vimdir/bundle
 tmp=/tmp/$LOGNAME-vim-update
-me=.vim/update.sh
+me=.vim/update-light.sh
 
 # I have an old server with outdated CA certs.
 if [ -n "$INSECURE" ]; then
