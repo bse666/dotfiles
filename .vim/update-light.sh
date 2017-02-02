@@ -20,7 +20,7 @@ cd ~/.dotfiles
 vimdir=$PWD/.vim
 bundledir=$vimdir/bundle
 tmp=/tmp/$LOGNAME-vim-update
-me=.vim/update.sh
+me=.vim/update-light.sh
 
 # I have an old server with outdated CA certs.
 if [ -n "$INSECURE" ]; then
@@ -38,6 +38,7 @@ repos=(
   https://github.com/Lokaltog/vim-powerline.git
   https://github.com/altercation/vim-colors-solarized.git
   https://github.com/kien/ctrlp.vim.git
+  https://github.com/tpope/vim-pathogen.git
   )
 
 #  https://github.com/glidenote/octoeditor.vim
@@ -62,7 +63,6 @@ repos=(
 #  https://github.com/tpope/vim-fugitive.git
 #  https://github.com/tpope/vim-liquid.git
 #  https://github.com/tpope/vim-markdown.git
-#  https://github.com/tpope/vim-pathogen.git
 #  https://github.com/tpope/vim-sleuth.git
 #  https://github.com/tpope/vim-surround.git
 #  https://github.com/vim-scripts/Railscasts-Theme-GUIand256color.git
