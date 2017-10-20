@@ -30,5 +30,15 @@ done
 	grep -v "[?*]" | cut -d " " -f2 | \
 	tr ' ' '\n')" scp sftp ssh
 
+alias 'sold=xrdb -DSOLARIZED_DARK -merge $HOME/.Xdefaults'
+alias 'soll=xrdb -DSOLARIZED_LIGHT -merge $HOME/.Xdefaults'
+alias 'today=calendar -A 0 -f /usr/share/calendar/calendar.mark | sort'
+alias 'mp3from=ffmpeg -i $1 -b:a 256k -ac 2 -ar 44100 -vn $1.mp3'
+alias 'dus=du -sckx * | sort -nr'
+alias 'adventure=emacs -batch -l dunnet'
+alias 'mailsize=du -hs ~/Library/mail'
+alias 'ttop=top -ocpu -R -F -s 2 -n30'
+
+alias 'dmesgg=dmesg -L --reltime -H'
 # print a fortune when the terminal opens
 #fortune -a -s | lolcat

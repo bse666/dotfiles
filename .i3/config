@@ -74,9 +74,16 @@ bindsym $mod+F2 workspace file
 bindsym $mod+F3 workspace mail
 bindsym $mod+F4 workspace $ecur3
 bindsym $mod+F5 workspace vBox
+bindsym $mod+F6 workspace games
+bindsym $mod+F7 workspace media
 
 # lock screen
 bindsym $mod+F12 exec i3lock -c 000000 -p win -i $HOME/Downloads/sperr.png
+
+# master volume
+bindsym $mod+Ctrl+Up exec amixer -q set Master 2dB+ unmute && pacmd set-sink-mute 0 0
+bindsym $mod+Ctrl+Down exec amixer -q set Master 2dB- unmute && pacmd set-sink-mute 0 0
+bindsym $mod+Ctrl+Left exec pacmd set-sink-mute 0 1
 
 # split in horizontal orientation
 bindsym $mod+b split h
@@ -180,7 +187,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 bindsym --release button2 kill
 
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
 for_window [title="htop"] floating enable
+for_window [class="Steam" title="Steam - News"] floating enable
 
 assign [title="VMware Horizon View Client"] 8
 assign [title="Verbindung zu Server herstellen"] 8
@@ -191,11 +202,11 @@ assign [class="(File-roller|file-roller|Nautilus|Thunar|Rox)"] file
 #assign [windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)'] pseudotile=on
 #assign [windowtype='_NET_WM_WINDOW_TYPE_DIALOG'] focus=on
 #assign [windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)'] manage=off
-assign [class="(MPlayer|Vlc)"] media
+assign [class="(?i)(MPlayer|Vlc)"] media
 assign [class="([Ff]irefox|Chromium-browser|[Gg]oogle-chrome)"] web
 assign [class="Thunderbird"] mail
-assign [class="(Steam)"] steam
-assign [class="(Playonlinux)"] PoL
+assign [class="(Steam)"] games
+assign [class="(?i)(Playonlinux|Lutris)"] games
 assign [class="(VirtualBox|Oracle VM VirtualBox Manager)"] vBox
 assign [class="(VirtualBox)" title="Win7_domain$"] 7
 for_window [title="^tails$"] move to workspace 7, layout stacking
@@ -239,6 +250,30 @@ client.focused_inactive #333333 #93a1a1 #fdf6e3 #484e50
 client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 
 exec xsetroot -solid "#073642"
+## Manual management of external displays
+## Set the shortcuts and what they do
+set $mode_display Ext Screen (h) DVI-1 ON, (y) DVI-1 OFF
+#set $mode_display Ext Screen (v) VGA ON, (h) DVI-1 ON, (x) VGA OFF, (y) DVI-1 OFF
+mode "$mode_display" {
+    #bindsym v exec --no-startup-id xrandr --output DVI-0 --auto --right-of LVDS1, mode "default"
+    bindsym h exec --no-startup-id xrandr --output DVI-1 --auto --right-of DVI-0, mode "default"
+    bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
+    bindsym y exec --no-startup-id xrandr --output DVI-1 --auto --off, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+    #         # Declare here the shortcut to bring the display selection menu
+    
+bindsym $mod+x mode "$mode_display"
+
+set $shutdown_dialog Shutdown? (y)
+mode "$shutdown_dialog" {
+    bindsym y exec shutdown -P now, mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Ctrl+p mode "$shutdown_dialog"
 
 # My stuff
 assign [class="Firefox"] 2
@@ -252,14 +287,16 @@ for_window [class="Thunderbird"] layout tabbed
 for_window [class="Wpa_gui"] floating enable
 
 # 90x3a
-bindcode 121 exec --no-startup-id amixer set Master toggle -q
-bindcode 122 exec --no-startup-id amixer set Master 10%- unmute -q
-bindcode 123 exec --no-startup-id amixer set Master 10%+ unmute -q
-bindcode 156 exec --no-startup-id toggle.sh /sys/devices/platform/samsung/performance_level
+#bindcode 121 exec --no-startup-id amixer set Master toggle -q
+#bindcode 122 exec --no-startup-id amixer set Master 10%- unmute -q
+#bindcode 123 exec --no-startup-id amixer set Master 10%+ unmute -q
+#bindcode 156 exec --no-startup-id toggle.sh /sys/devices/platform/samsung/performance_level
 
 exec ~/.i3/local
 exec --no-startup-id nm-applet
-exec --no-startup-id i3-msg "workspace mail; exec thunderbird; workspace 1"
+exec --no-startup-id xrdb $HOME/.Xdefaults
+exec --no-startup-id owncloud
+#exec --no-startup-id i3-msg "workspace mail; exec thunderbird; workspace 1"
 exec --no-startup-id i3-msg "workspace 2; exec google-chrome"
 exec --no-startup-id i3-msg "workspace 1; exec i3-sensible-terminal;"
 #exec --no-startup-id i3-msg "workspace $ecur3; exec firefox; xterm"
