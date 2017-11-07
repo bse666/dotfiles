@@ -38,6 +38,7 @@ alias 'dus=du -sckx * | sort -nr'
 alias 'adventure=emacs -batch -l dunnet'
 alias 'mailsize=du -hs ~/Library/mail'
 alias 'ttop=top -ocpu -R -F -s 2 -n30'
+alias 'hbcli=HandBrakeCLI -a 1 -6 stereo -R 48 --preset "Fast 720p30" -i $1 -o $1.mp4'
 
 alias 'dmesgg=dmesg -L --reltime -H'
 # print a fortune when the terminal opens
