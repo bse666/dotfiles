@@ -1,0 +1,25 @@
+sw_volume: 100
+audio_device_state:1:mpd alsamixer-output
+audio_device_state:1:toggle_visualizer
+state: pause
+current: 0
+time: 133.015000
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:2008 - All Hope Is Gone (special edition)/02-gematria_(the_killing_name)-qtxmp3.mp3
+1:2008 - All Hope Is Gone (special edition)/04-psychosocial-qtxmp3.mp3
+2:ChroniX Aggression - Loud & Clear - www.chronixradio.com/36 Crazyfists - Kenai.mp3
+3:ChroniX Aggression - Loud & Clear - www.chronixradio.com/A Perfect Murder - Body and blood.mp3
+4:ChroniX Aggression - Loud & Clear - www.chronixradio.com/Aggressive Persuasion - Crawl.mp3
+5:ChroniX Aggression - Loud & Clear - www.chronixradio.com/Aggressive Persuasion - Prolonged Farewells.mp3
+6:ChroniX Aggression - Loud & Clear - www.chronixradio.com/American Head Charge - A Violent Reaction.mp3
+7:ChroniX Aggression - Loud & Clear - www.chronixradio.com/And Utero Dominae - Bleeding Machines.mp3
+8:ChroniX Aggression - Loud & Clear - www.chronixradio.com/And Utero Dominae - The Agony Disease.mp3
+9:ChroniX Aggression - Loud & Clear - www.chronixradio.com/Anthrax - C11 H17 N2 O2 S Na.mp3
+playlist_end
