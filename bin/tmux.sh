@@ -18,7 +18,7 @@ if [ "$?" -eq 1 ] ; then
 		tmux kill-window -t $name:0
 
 		tmux send-keys -t$name:1 'cd ~/Downloads;clear' C-m
-		tmux send-keys -t$name:2 'ssh 192.168.1.8 -t tmux a' C-m
+		tmux send-keys -t$name:2 'ssh freenas -t "tmux a||tmux"' C-m
 		tmux send-keys -t$name:3 'ranger' C-m
 		tmux send-keys -t$name:4 "vim $HOME/notes/notes.txt" C-m
 		tmux send-keys -t$name:5 "ncmpcpp -h $mpdhost" C-m

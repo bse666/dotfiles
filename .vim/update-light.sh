@@ -39,6 +39,7 @@ repos=(
   https://github.com/altercation/vim-colors-solarized.git
   https://github.com/kien/ctrlp.vim.git
   https://github.com/tpope/vim-pathogen.git
+  https://github.com/lervag/vimtex.git
   )
 
 #  https://github.com/glidenote/octoeditor.vim

@@ -13,7 +13,7 @@ nmap \e :NERDTreeToggle<CR>
 nmap \f mt:Goyo 100<CR>'tzz
 nmap \F mt:Goyo<CR>'tzz
 nmap \g :Gstatus<CR>
-nmap \l :setlocal number!<CR>:setlocal number?<CR>
+nmap \n :setlocal number!<CR>:setlocal number?<CR>
 nmap \M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
 nmap \m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
 nmap \o :set paste!<CR>:set paste?<CR>
@@ -316,6 +316,11 @@ let Tlist_WinWidth = 30
 
 " NERD_tree.vim
 let NERDTreeIgnore = ['\~$', '\.pyc$']
+
+" VIMTEX
+let g:vimtex_view_method = 'zathura'
+nmap <F12> :VimtexCompileToggle<cr>
+nmap <F11> :VimtexTocToggle<cr>
 
 " ctrlp.vim (replaces FuzzyFinder and Command-T)
 let g:ctrlp_map = '<Leader>t'
