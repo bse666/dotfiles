@@ -48,6 +48,9 @@ map <C-p> :bprev<CR>
 " Paste Mode for pasting more Text at once (use in insert mode)
 set pastetoggle=<F2>
 
+set number
+set relativenumber
+
 " Window movement shortcuts from Mark
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -251,7 +254,7 @@ set matchtime=2             " Tenths of second to hilight matching paren
 set modelines=5             " How many lines of head & tail to look for ml's
 silent! set mouse=nvc       " Use the mouse, but not in insert mode
 set nobackup                " No backups left after done editing
-set nonumber                " No line numbers to start
+"set nonumber                " No line numbers to start
 set visualbell t_vb=        " No flashing or beeping at all
 set nowritebackup           " No backups made while editing
 set printoptions=paper:a4   " A4 Paper

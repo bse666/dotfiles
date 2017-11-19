@@ -31,4 +31,10 @@ Session.vim
 .rainbow_oauth
 .nginx/conf.d/*
 
+.config/mpd/database
+.config/mpd/playlists
+.config/mpd/state
+.config/mpd/log
+.config/mpd/pid
+
 bin/
