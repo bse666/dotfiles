@@ -300,8 +300,8 @@ endfunction
 " Section: Plugins {{{1
 "--------------------------------------------------------------------------
 runtime bundle/vim-pathogen/autoload/pathogen.vim                               
-call pathogen#infect()                                                          
-call pathogen#helptags()  
+" call pathogen#infect()                                                          
+" call pathogen#helptags()  
 
 " enable filetype plugins -- e.g., ftplugin/xml.vim
 filetype plugin indent on
@@ -359,11 +359,11 @@ endif
 " Section: Colors and Themes {{{1
 "--------------------------------------------------------------------------
 set background=dark " dark | light "                       
-colorscheme solarized                                      
+colorscheme blue
 filetype plugin on
 
 " Section: Load ~/.vimlocal {{{1
 "--------------------------------------------------------------------------
 set cursorline
 set colorcolumn=80
-call togglebg#map("<F5>")
+" call togglebg#map("<F5>")
