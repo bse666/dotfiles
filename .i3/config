@@ -321,6 +321,7 @@ client.focused          #859900 #859900 #fdf6e3 #2e9ef4
 client.focused_inactive #333333 #93a1a1 #fdf6e3 #484e50
 #client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
 client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
+new_window pixel 2
 
 exec xsetroot -solid "#073642"
 ## Manual management of external displays
