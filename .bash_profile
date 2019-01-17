@@ -33,7 +33,7 @@ done
 alias 'sold=xrdb -DSOLARIZED_DARK -merge $HOME/.Xdefaults'
 alias 'soll=xrdb -DSOLARIZED_LIGHT -merge $HOME/.Xdefaults'
 alias 'today=calendar -A 0 -f /usr/share/calendar/calendar.mark | sort'
-alias 'mp3from=ffmpeg -i $1 -b:a 256k -ac 2 -ar 44100 -vn $1.mp3'
+alias 'mp3from=for file in $(find $1 -maxdepth 0 -type f); do ffmpeg -i $1 -b:a 256k -ac 2 -ar 44100 -vn $1.mp3; done;'
 alias 'dus=du -sckx * | sort -nr'
 alias 'adventure=emacs -batch -l dunnet'
 alias 'mailsize=du -hs ~/Library/mail'
